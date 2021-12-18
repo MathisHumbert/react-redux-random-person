@@ -8,42 +8,64 @@ import {
   FaLock,
 } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from './redux/actions';
+import { getUser, setValue } from './redux/actions';
 
 const defaultImage = 'https://randomuser.me/api/portraits/men/75.jpg';
 function App() {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.reducer);
-  console.log(data);
+  const { user, hoverName } = useSelector((state) => state.reducer);
+  console.log(user);
 
   React.useEffect(() => {
     dispatch(getUser());
   }, []);
+
+  // need to get the values from the user obj
+  // need to dispatch get user
+
   return (
     <>
       <div className="block bcg-black">random user starter</div>
       <div className="block">
         <div className="container">
           <img src={defaultImage} alt="photo" />
-          <p className="user-title">My hoverName is</p>
-          <p className="user-value">hoverValue</p>
+          <p className="user-title">{hoverName}</p>
+          <p className="user-value">user[hoverName]</p>
           <div className="values-list">
-            <button className="icon" data-label="name">
+            <button
+              className="icon"
+              onMouseEnter={() => dispatch(setValue('name'))}
+            >
               <FaUser />
             </button>
-            <button className="icon" data-label="email">
+            <button
+              className="icon"
+              onMouseEnter={() => dispatch(setValue('email'))}
+            >
               <FaEnvelopeOpen />
             </button>
-            <button className="icon" data-label="age">
+            <button
+              className="icon"
+              onMouseEnter={() => dispatch(setValue('age'))}
+            >
               <FaCalendarTimes />
             </button>
-            <button className="icon" data-label="street">
+            <button
+              className="icon"
+              onMouseEnter={() => dispatch(setValue('street'))}
+            >
               <FaMap />
             </button>
-            <button className="icon" data-label="phone">
+            <button
+              className="icon"
+              onMouseEnter={() => dispatch(setValue('phone'))}
+            >
               <FaPhone />
             </button>
-            <button className="icon" data-label="password">
+            <button
+              className="icon"
+              onMouseEnter={() => dispatch(setValue('password'))}
+            >
               <FaLock />
             </button>
           </div>
