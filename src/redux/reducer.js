@@ -1,6 +1,15 @@
-const initialState = {};
+import { combineReducers } from 'redux';
+
+const initialState = {
+  test: 'test',
+};
 
 const reducer = (state = initialState, action) => {
   return state;
 };
-export default reducer;
+
+const rootReducer = combineReducers({
+  reducer,
+});
+
+export default rootReducer;

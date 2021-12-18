@@ -7,9 +7,18 @@ import {
   FaPhone,
   FaLock,
 } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from './redux/actions';
 
 const defaultImage = 'https://randomuser.me/api/portraits/men/75.jpg';
 function App() {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.reducer);
+  console.log(data);
+
+  React.useEffect(() => {
+    dispatch(getUser());
+  }, []);
   return (
     <>
       <div className="block bcg-black">random user starter</div>
