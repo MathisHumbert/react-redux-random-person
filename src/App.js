@@ -69,7 +69,11 @@ function App() {
               <FaLock />
             </button>
           </div>
-          <button className="btn" type="button">
+          <button
+            className="btn"
+            type="button"
+            onClick={() => dispatch(getUser())}
+          >
             random user
           </button>
         </div>
