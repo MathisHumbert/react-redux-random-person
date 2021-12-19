@@ -14,14 +14,30 @@ const defaultImage = 'https://randomuser.me/api/portraits/men/75.jpg';
 function App() {
   const dispatch = useDispatch();
   const { user, hoverName } = useSelector((state) => state.reducer);
-  console.log(user);
 
   React.useEffect(() => {
     dispatch(getUser());
   }, []);
+  let tempUser = {};
 
-  // need to get the values from the user obj
-  // need to dispatch get user
+  if (user.name) {
+    const {
+      name: { first, last },
+      location: { street },
+      dob: { age },
+      phone,
+      login: { password },
+      email,
+    } = user;
+    tempUser = {
+      name: `${first} ${last}`,
+      street: `${street.number} ${street.name}`,
+      email,
+      age,
+      phone,
+      password,
+    };
+  }
 
   return (
     <>
@@ -30,7 +46,7 @@ function App() {
         <div className="container">
           <img src={defaultImage} alt="photo" />
           <p className="user-title">{hoverName}</p>
-          <p className="user-value">user[hoverName]</p>
+          <p className="user-value">{tempUser[hoverName]}</p>
           <div className="values-list">
             <button
               className="icon"
