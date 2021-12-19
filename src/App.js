@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   FaEnvelopeOpen,
   FaUser,
@@ -10,14 +10,13 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, setValue } from './redux/actions';
 
-const defaultImage = 'https://randomuser.me/api/portraits/men/75.jpg';
 function App() {
   const dispatch = useDispatch();
   const { user, hoverName } = useSelector((state) => state.reducer);
 
   React.useEffect(() => {
     dispatch(getUser());
-  }, []);
+  }, [dispatch]);
   let tempUser = {};
 
   if (user.name) {
@@ -46,7 +45,7 @@ function App() {
       <div className="block bcg-black">random user starter</div>
       <div className="block">
         <div className="container">
-          <img src={tempUser.img} alt="photo" />
+          <img src={tempUser.img} alt="person" />
           <p className="user-title">{hoverName}</p>
           <p className="user-value">{tempUser[hoverName]}</p>
           <div className="values-list">
