@@ -28,6 +28,7 @@ function App() {
       phone,
       login: { password },
       email,
+      picture: { large },
     } = user;
     tempUser = {
       name: `${first} ${last}`,
@@ -36,6 +37,7 @@ function App() {
       age,
       phone,
       password,
+      img: large,
     };
   }
 
@@ -44,7 +46,7 @@ function App() {
       <div className="block bcg-black">random user starter</div>
       <div className="block">
         <div className="container">
-          <img src={defaultImage} alt="photo" />
+          <img src={tempUser.img} alt="photo" />
           <p className="user-title">{hoverName}</p>
           <p className="user-value">{tempUser[hoverName]}</p>
           <div className="values-list">
